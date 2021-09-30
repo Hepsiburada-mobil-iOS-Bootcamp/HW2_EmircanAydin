@@ -9,53 +9,39 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var actionButton: ActionButton!
-    private var actionButton2: ActionButton!
+    private var actionModule: ActionModule!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addActionButton()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3 , execute: {
-            let actionButtonData = ActionButtonData(buttonTitle: "OK", type: .filled(.smooth)).setActionButtonListener(by: self.actionButtonHandler)
-            self.actionButton.setData(by: actionButtonData)
-        })
+        addActionModule()
+        setupActionModuleData()
     }
     
-    lazy var actionButtonHandler: VoidCompletionBlock = {
-        print("ACTION BUTTON PRESSED")
-    }
-    
-    private func addActionButton() {
-        actionButton = ActionButton()
-        actionButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(actionButton)
+    private func addActionModule() {
+        actionModule = ActionModule()
+        actionModule.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(actionModule)
         
         NSLayoutConstraint.activate([
             
-            actionButton.heightAnchor.constraint(equalToConstant: 50),
-            actionButton.widthAnchor.constraint(equalToConstant: 120),
-            
-            actionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            actionButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
+            actionModule.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            actionModule.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
         ])
+    }
+    
+    private func setupActionModuleData() {
+        let notNow = ActionButtonData(buttonTitle: "OK",
+                                      type: .filled(.smooth)).setActionButtonListener {
+                                        print("Not now fired!")
+                                        
+                                      }
         
-        actionButton2 = ActionButton(frame: .zero, data: ActionButtonData(buttonTitle: "OK", type: .outlined(.smooth)))
-        actionButton2.translatesAutoresizingMaskIntoConstraints = false
+        let ok = ActionButtonData(buttonTitle: "Not Now",
+                                  type: .outlined(.smooth)).setActionButtonListener {
+                                    print("Ok fired!")
+                                  }
         
-        view.addSubview(actionButton2)
-        
-        NSLayoutConstraint.activate([
-            
-            actionButton2.heightAnchor.constraint(equalToConstant: 50),
-            actionButton2.widthAnchor.constraint(equalToConstant: 120),
-            
-            actionButton2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            actionButton2.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 120),
-            
-        ])
+        actionModule.setData(by: ActionModuleData(notNowButton: notNow, okButton: ok))
     }
 }
 
