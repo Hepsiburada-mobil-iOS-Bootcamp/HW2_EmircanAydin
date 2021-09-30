@@ -89,6 +89,11 @@ class ActionButton: GenericBaseView<ActionButtonData> {
             buttonTitle.textColor = theme.value
         }
     }
+    
+    func pressedButtonAction() {
+        guard let data = getData() else { return }
+        data.actionButtonListener?()
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
@@ -101,8 +106,12 @@ extension ActionButton: UIGestureRecognizerDelegate {
     }
     
     @objc fileprivate func buttonTapped(_ sender: UITapGestureRecognizer) {
+        
+        isUserInteractionEnabled = false
         startTappedAnimation(with: { finish in
+            self.isUserInteractionEnabled = true
             print("Clicked")
+            self.pressedButtonAction()
         })
     }
 }

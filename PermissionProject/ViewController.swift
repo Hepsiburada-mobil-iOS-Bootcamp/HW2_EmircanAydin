@@ -17,9 +17,13 @@ class ViewController: UIViewController {
         addActionButton()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3 , execute: {
-            self.actionButton.setData(by: ActionButtonData(buttonTitle: "OK", type: .filled(.smooth)))
+            let actionButtonData = ActionButtonData(buttonTitle: "OK", type: .filled(.smooth)).setActionButtonListener(by: self.actionButtonHandler)
+            self.actionButton.setData(by: actionButtonData)
         })
-        
+    }
+    
+    lazy var actionButtonHandler: VoidCompletionBlock = {
+        print("ACTION BUTTON PRESSED")
     }
     
     private func addActionButton() {
@@ -53,7 +57,5 @@ class ViewController: UIViewController {
             
         ])
     }
-
-
 }
 
