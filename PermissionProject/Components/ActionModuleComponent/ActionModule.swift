@@ -68,7 +68,7 @@ class ActionModule: GenericBaseView<ActionModuleData> {
     
     override func loadDataView() {
         super.loadDataView()
-        guard let data = getData() else { return }
+        guard let data = returnData() else { return }
         notNowButton.setData(by: data.notNowButton)
         okButton.setData(by: data.okButton)
     }

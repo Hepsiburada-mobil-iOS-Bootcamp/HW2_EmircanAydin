@@ -7,41 +7,47 @@
 
 import UIKit
 
+protocol ActionButtonDelegate: AnyObject {
+    func actionButtonPressed()
+}
+
 class ActionButton: GenericBaseView<ActionButtonData> {
     
+//    weak var delegate: ActionButtonDelegate?
+    
     private lazy var shadowContainer: UIView = {
-        let shadowContainer = UIView()
-        shadowContainer.translatesAutoresizingMaskIntoConstraints = false
-        shadowContainer.layer.shadowColor = UIColor.black.cgColor
-        shadowContainer.layer.shadowOffset = CGSize(width: 0, height: 2)
-        shadowContainer.layer.shadowRadius = 4
-        shadowContainer.layer.opacity = 0.8
-        shadowContainer.layer.cornerRadius = 6
-        return shadowContainer
+        let temp = UIView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.layer.shadowColor = UIColor.black.cgColor
+        temp.layer.shadowOffset = CGSize(width: 0, height: 2)
+        temp.layer.shadowRadius = 4
+        temp.layer.shadowOpacity = 0.4
+        temp.layer.cornerRadius = 6
+        return temp
     }()
     
     private lazy var containerView: UIView = {
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.layer.cornerRadius = 6
-        containerView.clipsToBounds = true
-        return containerView
+        let temp = UIView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.layer.cornerRadius = 6
+        temp.clipsToBounds = true
+        return temp
     }()
     
-    private lazy var buttonTitle: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = FontManager.bold(14).value
-        label.text = " "
-        label.contentMode = .center
-        label.textAlignment = .center
-        return label
+    private lazy var infoTitle: UILabel = {
+        let temp = UILabel()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.font = FontManager.bold(14).value
+        temp.text = " "
+        temp.contentMode = .center
+        temp.textAlignment = .center
+        return temp
     }()
-    
     
     override func addMajorViewComponents() {
         super.addMajorViewComponents()
         addContainerView()
+        
     }
     
     override func setupViewConfigurations() {
@@ -52,7 +58,7 @@ class ActionButton: GenericBaseView<ActionButtonData> {
     private func addContainerView() {
         addSubview(shadowContainer)
         shadowContainer.addSubview(containerView)
-        containerView.addSubview(buttonTitle)
+        containerView.addSubview(infoTitle)
         
         NSLayoutConstraint.activate([
             
@@ -66,54 +72,58 @@ class ActionButton: GenericBaseView<ActionButtonData> {
             containerView.topAnchor.constraint(equalTo: shadowContainer.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: shadowContainer.bottomAnchor),
             
-            buttonTitle.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            buttonTitle.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            infoTitle.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            infoTitle.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             
         ])
+        
     }
     
     override func loadDataView() {
         super.loadDataView()
-        guard let data = getData() else { return }
+        guard let data = returnData() else { return }
         
-        buttonTitle.text = data.buttonTitle
+        infoTitle.text = data.text
         
         switch data.buttonType {
         case .filled(let theme):
             containerView.backgroundColor = theme.value
-            buttonTitle.textColor = .white
+            infoTitle.textColor = .white
         case .outlined(let theme):
             containerView.layer.borderWidth = 1
-            containerView.backgroundColor = .white
             containerView.layer.borderColor = theme.value.cgColor
-            buttonTitle.textColor = theme.value
+            containerView.backgroundColor = .white
+            infoTitle.textColor = theme.value
         }
     }
     
-    func pressedButtonAction() {
-        guard let data = getData() else { return }
+    private func pressedButtonAction() {
+        guard let data = returnData() else { return }
         data.actionButtonListener?()
     }
+    
 }
 
 // MARK: - UIGestureRecognizerDelegate
 extension ActionButton: UIGestureRecognizerDelegate {
     
-    func addTapGesture() {
+    private func addTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: .buttonTappedSelector)
         tap.delegate = self
         addGestureRecognizer(tap)
     }
     
     @objc fileprivate func buttonTapped(_ sender: UITapGestureRecognizer) {
-        
         isUserInteractionEnabled = false
-        startTappedAnimation(with: { finish in
-            self.isUserInteractionEnabled = true
-            print("Clicked")
-            self.pressedButtonAction()
-        })
+        startTappedAnimation { finish in
+            if finish {
+                self.isUserInteractionEnabled = true
+//                self.delegate?.actionButtonPressed()
+                self.pressedButtonAction()
+            }
+        }
     }
+    
 }
 
 fileprivate extension Selector {

@@ -8,11 +8,13 @@
 import Foundation
 
 class ActionModuleData {
-    private(set) var notNowButton: ActionButtonData
-    private(set) var okButton: ActionButtonData
     
-    init(notNowButton: ActionButtonData, okButton: ActionButtonData) {
-        self.notNowButton = notNowButton
-        self.okButton = okButton
+    private(set) var negativeButtonData: ActionButtonData
+    private(set) var positiveButtonData: ActionButtonData
+    
+    init(negativeButtonData: ActionButtonData, positiveButtonData: ActionButtonData) {
+        self.negativeButtonData = negativeButtonData
+        self.positiveButtonData = positiveButtonData
     }
+    
 }

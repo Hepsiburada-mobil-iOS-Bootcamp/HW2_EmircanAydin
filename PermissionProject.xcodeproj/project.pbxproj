@@ -26,6 +26,10 @@
 		90AF73F127064A7900C9F781 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AF73F027064A7900C9F781 /* UIView+Extensions.swift */; };
 		90AF73FD270653A000C9F781 /* ActionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AF73FC270653A000C9F781 /* ActionModule.swift */; };
 		90AF74022706542200C9F781 /* ActionModuleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AF74012706542100C9F781 /* ActionModuleData.swift */; };
+		90E2F88A2707A22D00441E4D /* LabelPackComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E2F8892707A22D00441E4D /* LabelPackComponent.swift */; };
+		90E2F88F2707A24600441E4D /* LabelPackComponentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E2F88E2707A24600441E4D /* LabelPackComponentData.swift */; };
+		90E2F8952707A27900441E4D /* PermissionMainViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E2F8942707A27900441E4D /* PermissionMainViewData.swift */; };
+		90E2F89A2707A29300441E4D /* PermissionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E2F8992707A29300441E4D /* PermissionMainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		90AF73F027064A7900C9F781 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		90AF73FC270653A000C9F781 /* ActionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModule.swift; sourceTree = "<group>"; };
 		90AF74012706542100C9F781 /* ActionModuleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModuleData.swift; sourceTree = "<group>"; };
+		90E2F8892707A22D00441E4D /* LabelPackComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPackComponent.swift; sourceTree = "<group>"; };
+		90E2F88E2707A24600441E4D /* LabelPackComponentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPackComponentData.swift; sourceTree = "<group>"; };
+		90E2F8942707A27900441E4D /* PermissionMainViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionMainViewData.swift; sourceTree = "<group>"; };
+		90E2F8992707A29300441E4D /* PermissionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionMainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +164,8 @@
 		906498A52702700500AD37C9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				90E2F8932707A26200441E4D /* PermissionMainViewData */,
+				90E2F8882707A20700441E4D /* LabelPackComponent */,
 				90AF73FB2706538600C9F781 /* ActionModuleComponent */,
 				906498A62702700E00AD37C9 /* ActionButtonComponent */,
 			);
@@ -215,6 +225,24 @@
 				90AF74012706542100C9F781 /* ActionModuleData.swift */,
 			);
 			path = ActionModuleComponent;
+			sourceTree = "<group>";
+		};
+		90E2F8882707A20700441E4D /* LabelPackComponent */ = {
+			isa = PBXGroup;
+			children = (
+				90E2F8892707A22D00441E4D /* LabelPackComponent.swift */,
+				90E2F88E2707A24600441E4D /* LabelPackComponentData.swift */,
+			);
+			path = LabelPackComponent;
+			sourceTree = "<group>";
+		};
+		90E2F8932707A26200441E4D /* PermissionMainViewData */ = {
+			isa = PBXGroup;
+			children = (
+				90E2F8942707A27900441E4D /* PermissionMainViewData.swift */,
+				90E2F8992707A29300441E4D /* PermissionMainView.swift */,
+			);
+			path = PermissionMainViewData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,16 +378,20 @@
 				9064987427026DEE00AD37C9 /* ViewController.swift in Sources */,
 				906498D127027BE100AD37C9 /* ActionButtonTheme.swift in Sources */,
 				906498C7270275ED00AD37C9 /* GenericValueProtocol.swift in Sources */,
+				90E2F88F2707A24600441E4D /* LabelPackComponentData.swift in Sources */,
 				90AF74022706542200C9F781 /* ActionModuleData.swift in Sources */,
 				906498CC27027BA500AD37C9 /* ActionButtonType.swift in Sources */,
 				9064987027026DEE00AD37C9 /* AppDelegate.swift in Sources */,
+				90E2F88A2707A22D00441E4D /* LabelPackComponent.swift in Sources */,
 				906498D627027FB300AD37C9 /* GenericBaseView.swift in Sources */,
 				90AF73FD270653A000C9F781 /* ActionModule.swift in Sources */,
 				90AF73F127064A7900C9F781 /* UIView+Extensions.swift in Sources */,
+				90E2F8952707A27900441E4D /* PermissionMainViewData.swift in Sources */,
 				906498BF270275DB00AD37C9 /* FontManager.swift in Sources */,
 				906498B12702741700AD37C9 /* BaseView.swift in Sources */,
 				906498B92702751D00AD37C9 /* ActionButtonData.swift in Sources */,
 				9064987227026DEE00AD37C9 /* SceneDelegate.swift in Sources */,
+				90E2F89A2707A29300441E4D /* PermissionMainView.swift in Sources */,
 				906498A82702702F00AD37C9 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,7 +23,7 @@ class GenericBaseView<T>: BaseView {
     
     func loadDataView() {}
     
-    func getData() -> T? {
+    func returnData() -> T? {
         return data
     }
     
