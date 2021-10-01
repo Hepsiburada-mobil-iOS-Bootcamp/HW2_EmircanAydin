@@ -2,34 +2,40 @@
 //  GenericBaseView.swift
 //  PermissionProject
 //
-//  Created by Emircan Aydın on 28.09.2021.
+//  Created by Emircan Aydın on 1.10.2021.
 //
 
 import UIKit
 
-class GenericBaseView<T>: BaseView {
+public class GenericBaseView<T>: BaseView {
     
     private var data: T?
     
-    init(frame: CGRect = .zero, data: T? = nil) {
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    public init(frame: CGRect = .zero, data: T?) {
         self.data = data
         super.init(frame: frame)
-        loadDataView()
+        loadDataToView()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
-    func loadDataView() {}
+    func loadDataToView() {
+        
+    }
+    
+    func setData(data: T?) {
+        self.data = data
+        loadDataToView()
+    }
     
     func returnData() -> T? {
         return data
-    }
-    
-    func setData(by value: T?) {
-        self.data = value
-        loadDataView()
     }
     
 }

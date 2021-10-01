@@ -2,26 +2,26 @@
 //  BaseView.swift
 //  PermissionProject
 //
-//  Created by Emircan Aydın on 28.09.2021.
+//  Created by Emircan Aydın on 1.10.2021.
 //
 
 import UIKit
 
-class BaseView: UIView {
+public class BaseView: UIView {
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
-        addMajorViewComponents()
-        setupViewConfigurations()
+        addMajorFields()
+        setupViews()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-        addMajorViewComponents()
-        setupViewConfigurations()
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        addMajorFields()
+        setupViews()
     }
     
-    func addMajorViewComponents() {}
-    func setupViewConfigurations() {}
+    func addMajorFields() {}
+    func setupViews() {}
     
 }
